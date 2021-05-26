@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project javaaa">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}"/>
+    <property name="dir.jarfile" value="C:/Users/Hera Gaming/Desktop/demo_algorithm"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/demo_algorithm_visualization.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="application.Main"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.workspace}/javaaa/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/Coding stuff/Java/JavaProject/Mini  project/javafx-sdk-16/lib/javafx.base.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/Coding stuff/Java/JavaProject/Mini  project/javafx-sdk-16/lib/javafx.controls.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/Coding stuff/Java/JavaProject/Mini  project/javafx-sdk-16/lib/javafx.fxml.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/Coding stuff/Java/JavaProject/Mini  project/javafx-sdk-16/lib/javafx.graphics.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/Coding stuff/Java/JavaProject/Mini  project/javafx-sdk-16/lib/javafx.media.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/Coding stuff/Java/JavaProject/Mini  project/javafx-sdk-16/lib/javafx.swing.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/Coding stuff/Java/JavaProject/Mini  project/javafx-sdk-16/lib/javafx.web.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/Coding stuff/Java/JavaProject/Mini  project/javafx-sdk-16/lib/javafx-swt.jar"/>
+        </jar>
+    </target>
+</project>

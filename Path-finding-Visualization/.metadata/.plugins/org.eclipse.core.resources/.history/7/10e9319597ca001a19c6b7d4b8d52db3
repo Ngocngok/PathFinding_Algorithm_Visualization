@@ -1,0 +1,91 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import back_end.Cell;
+import javafx.animation.AnimationTimer;
+import javafx.scene.layout.StackPane;
+import utils.Constant;
+
+public class Painter 
+{
+	public void paint(Map<Integer, StackPane> map, ArrayList<Cell> step)
+	{
+		for(Cell cell : step)
+		{
+			if(cell.getStatus() == Constant.EVALUATING)
+			{
+				getTileFromMap(map, cell).setStyle("-fx-background-color: red; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+				AnimationTimer myTimer = new MyTimer(getTileFromMap(map, cell));
+				myTimer.start();
+			}
+			
+			if(cell.getStatus() == Constant.PATH)
+			{
+				getTileFromMap(map, cell).setStyle("-fx-background-color: blue; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+			}
+			
+			if(cell.getStatus() == Constant.NULL)
+			{
+				getTileFromMap(map, cell).setStyle("-fx-background-color: white; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+				
+			}
+			
+			if(cell.getStatus() == Constant.STARTING_POINT)
+			{
+				getTileFromMap(map, cell).setStyle("-fx-background-color: yellow; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+			}
+			
+			if(cell.getStatus() == Constant.END_POINT)
+			{
+				getTileFromMap(map, cell).setStyle("-fx-background-color: yellow; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+			}
+			
+			
+		}
+		
+	}
+	
+	public void testPaint(Map<Integer, StackPane> map)
+	{
+		map.get(3).setStyle("-fx-background-color: red; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+	
+	}
+	
+	
+	private class MyTimer extends AnimationTimer
+	{
+		private StackPane stackPane;
+		double opacity = 0;
+		
+		private MyTimer(StackPane stackPane)
+		{
+			this.stackPane = stackPane;
+		}
+		
+		
+		public void handle(long now)
+		{
+			doHandle();
+		}
+		
+		private void doHandle()
+		{
+			opacity += 0.02;
+			stackPane.opacityProperty().set(opacity);
+			if(opacity >= 1)
+			{
+				stop();
+			}
+			
+			
+		}
+	}
+	
+	public StackPane getTileFromMap(Map<Integer, StackPane> map, Cell cell)
+	{
+		return map.get(cell.getRow() * Constant.COLUMN_COUNT + cell.getCol());
+	}
+
+}

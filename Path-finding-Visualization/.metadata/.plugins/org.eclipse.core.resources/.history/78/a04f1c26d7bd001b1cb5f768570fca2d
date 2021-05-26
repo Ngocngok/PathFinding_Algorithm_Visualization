@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="833.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <VBox prefHeight="848.0" prefWidth="667.0">
+         <children>
+            <AnchorPane prefHeight="237.0" prefWidth="667.0">
+               <children>
+                  <Button fx:id="_mazeButton" layoutX="249.0" layoutY="147.0" mnemonicParsing="false" onAction="#generateMaze" text="Maze" />
+                  <Button fx:id="_backButton" disable="true" layoutX="457.0" layoutY="147.0" mnemonicParsing="false" onAction="#onBack" prefHeight="25.0" prefWidth="92.0" text="Back" />
+                  <Button fx:id="_spButton" layoutX="131.0" layoutY="112.0" mnemonicParsing="false" onAction="#chooseStartPoint" prefHeight="25.0" prefWidth="99.0" text="Starting point" />
+                  <Text layoutX="45.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path Finding Algorithm" wrappingWidth="171.13671875">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Text>
+                  <MenuButton fx:id="chooseAlgorithm" layoutX="32.0" layoutY="112.0" mnemonicParsing="false" text="Algorithm">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#aStarSearch" text="A* algorithm" />
+                      <MenuItem mnemonicParsing="false" onAction="#dijkstraAlgorithm" text="Dijkstra Algorithm" />
+                        <MenuItem mnemonicParsing="false" onAction="#breadthFirstSearch" text="Breadth First Algorithm" />
+                        <MenuItem mnemonicParsing="false" onAction="#depthFirstSearch" text="Depth First Algorithm" />
+                    </items>
+                  </MenuButton>
+                  <Button fx:id="_epButton" layoutX="131.0" layoutY="147.0" mnemonicParsing="false" onAction="#chooseEndPoint" prefHeight="25.0" prefWidth="99.0" text="End point" />
+                  <Button fx:id="_startButton" layoutX="344.0" layoutY="112.0" mnemonicParsing="false" onAction="#onStart" prefHeight="25.0" prefWidth="99.0" text="Start" />
+                  <Button fx:id="_stopButton" disable="true" layoutX="457.0" layoutY="112.0" mnemonicParsing="false" onAction="#onStop" prefHeight="25.0" prefWidth="92.0" text="Stop" />
+                  <Button fx:id="_nextButton" disable="true" layoutX="344.0" layoutY="147.0" mnemonicParsing="false" onAction="#onNext" prefHeight="25.0" prefWidth="99.0" text="Next step" />
+                  <Button fx:id="_resumeButton" disable="true" layoutX="561.0" layoutY="112.0" mnemonicParsing="false" onAction="#onResume" prefHeight="25.0" prefWidth="92.0" text="Resume" />
+                  <Button fx:id="_resetButton" disable="true" layoutX="561.0" layoutY="147.0" mnemonicParsing="false" onAction="#onReset" prefHeight="25.0" prefWidth="92.0" text="Reset" />
+                  <Button fx:id="_wallButton" layoutX="249.0" layoutY="112.0" mnemonicParsing="false" onAction="#buildWall" prefHeight="25.0" prefWidth="45.0" text="Wall" />
+               </children>
+            </AnchorPane>
+            <HBox fx:id="gridRegion" alignment="CENTER" prefHeight="449.0" prefWidth="622.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

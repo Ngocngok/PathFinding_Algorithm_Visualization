@@ -1,0 +1,92 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import back_end.Cell;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import utils.Constant;
+
+public class GridGenerator 
+{
+	GridPane gp = new GridPane();
+    Map<Integer, StackPane> gridMap = new HashMap<Integer, StackPane>();
+    
+    ArrayList<Cell> cellList = new ArrayList<Cell>();
+    
+    
+    public GridGenerator()
+    {
+    	
+    	
+    	for(int i = 0; i < Constant.ROW_COUNT; i++)
+    	{
+    		for(int j = 0 ; j < Constant.COLUMN_COUNT; j++)
+    		{
+    			StackPane tmp = new StackPane();
+    			tmp.setMinSize(15, 15);
+    			tmp.setStyle("-fx-background-color: white; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+                gp.add(tmp, j, i);
+                cellList.add(new Cell(i, j, Constant.NULL));
+
+                final int rowFinal = i;
+                final int columnFinal = j;
+                tmp.setOnMouseEntered(evt -> {
+                	
+                    System.out.format("column=%d; row=%d; cell=%s\n", columnFinal, rowFinal, tmp);
+                    
+                });
+                
+                tmp.setOnMouseClicked(evt ->{
+                	if(Controller.choosingStartPoint)
+                	{
+                		tmp.setStyle("-fx-background-color: yellow; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+                		cellList.set(rowFinal*Constant.COLUMN_COUNT + columnFinal, new Cell(rowFinal, columnFinal, Constant.STARTING_POINT));
+                		Controller.choosingStartPoint = false;
+                	}
+                	
+                	if(Controller.choosingEndPoint)
+                	{
+                		tmp.setStyle("-fx-background-color: yellow; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+                		cellList.set(rowFinal*Constant.COLUMN_COUNT + columnFinal, new Cell(rowFinal, columnFinal, Constant.END_POINT));
+                		Controller.choosingEndPoint = false;
+                	}
+                	
+                	if(Controller.buildWall)
+                	{
+                		tmp.setStyle("-fx-background-color: black; -fx-border-width: 2; -fx-border-color: black; -fx-border-style: solid");
+                		cellList.set(rowFinal*Constant.COLUMN_COUNT + columnFinal, new Cell(rowFinal, columnFinal, Constant.BLOCKED));
+                		Controller.choosingEndPoint = false;
+                	}
+                	
+            	   System.out.format("Clicked column=%d; row=%d\n", columnFinal, rowFinal);
+               
+               });
+                
+                gridMap.put(i*Constant.COLUMN_COUNT + j, tmp);
+    		}
+    	}
+    	
+    }
+    
+    public Map<Integer, StackPane> getMap()
+    {
+    	return gridMap;
+    }
+    
+    public GridPane getGridPane()
+    {
+    	return gp;
+    }
+    
+    public ArrayList<Cell> getCellList()
+    {
+    	return cellList;
+    }
+    
+    
+
+}
